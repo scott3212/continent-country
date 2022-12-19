@@ -1,3 +1,7 @@
 spring:
   application:
     name: "takehome"
+logging:
+  level:
+    root: "warn"
+    com.continentcountry.TakehomeApplication: "warn"
