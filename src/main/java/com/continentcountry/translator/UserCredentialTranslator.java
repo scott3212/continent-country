@@ -7,9 +7,8 @@ import com.continentcountry.request.CredentialRequest;
 import com.continentcountry.response.CredentialResponse;
 
 @Component
-public class UserCredentialTranslator implements ObjectTranslator<User, CredentialRequest, CredentialResponse> {
+public class UserCredentialTranslator {
 
-	@Override
 	public CredentialResponse entityToResponse(User entity) {
 		return CredentialResponse.builder()
 				.username(entity.getUsername())
@@ -17,7 +16,6 @@ public class UserCredentialTranslator implements ObjectTranslator<User, Credenti
 				.build();
 	}
 
-	@Override
 	public User requestToEntity(CredentialRequest request) {
 		return User.builder()
 				.username(request.getUsername())
