@@ -30,16 +30,14 @@ public class ApplicationSecurityConfig {
 		http.csrf().disable();
 		http.headers().frameOptions().disable();// for H2 Console
 		http.authorizeHttpRequests()
-//				.requestMatchers("/error").permitAll()// for H2 Console
-//				.requestMatchers("/h2**").permitAll()// for H2 Console
-//				.requestMatchers("/h2/login**").permitAll()// for H2 Console
-//				.requestMatchers("/api/login").permitAll()
-//				.requestMatchers("/api/register").permitAll()
-//				.requestMatchers("/swagger-ui**").permitAll()
-//				.requestMatchers("/swagger-ui/**").permitAll()
-//				.requestMatchers("/v3/api-docs/**").permitAll()
-//				.anyRequest().authenticated()
-				.anyRequest().permitAll()
+				.requestMatchers("/error").permitAll()
+				.requestMatchers("/h2**").permitAll()// for H2 Console
+				.requestMatchers("/api/login").permitAll()
+				.requestMatchers("/api/register").permitAll()
+				.requestMatchers("/swagger-ui**").permitAll()
+				.requestMatchers("/swagger-ui/**").permitAll()
+				.requestMatchers("/v3/api-docs/**").permitAll()
+				.anyRequest().authenticated()
 				.and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

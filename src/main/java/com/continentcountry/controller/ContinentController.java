@@ -70,6 +70,6 @@ public class ContinentController {
 						.getCode())))
 				.collect(Collectors.toList());
 
-		return new ResponseEntity<>(ContinentResponse.builder().continent(listOfContinent).build(), HttpStatus.CREATED);
+		return new ResponseEntity<>(ContinentResponse.builder().continent(listOfContinent).build(), HttpStatus.OK);
 	}
 }
