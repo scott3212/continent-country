@@ -14,6 +14,7 @@ import com.continentcountry.entity.User;
 import com.continentcountry.repository.IUserRepository;
 import com.continentcountry.util.JwtUtility;
 
+import io.jsonwebtoken.security.SignatureException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -43,6 +44,16 @@ public class JwtFilter extends OncePerRequestFilter {
 			log.info("The request URI " + request.getRequestURI() + "doesn't contains user's UUID");
 		}
 
+		try {
+			validateJWTToken(request, authHeader, requestUUID);
+		} catch (SignatureException e) {
+			log.error("A JWT token is passed in but it's not valid");
+		}
+
+		filterChain.doFilter(request, response);
+	}
+
+	private void validateJWTToken(HttpServletRequest request, final String authHeader, String requestUUID) {
 		if (isBearerToken(authHeader)) {
 			String jwt = authHeader.substring(7);
 			String uuid = jwtUtility.getUuidFromToken(jwt);
@@ -55,8 +66,6 @@ public class JwtFilter extends OncePerRequestFilter {
 				}
 			}
 		}
-
-		filterChain.doFilter(request, response);
 	}
 
 	private boolean isBearerToken(String authHeader) {

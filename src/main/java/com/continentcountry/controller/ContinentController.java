@@ -45,6 +45,17 @@ public class ContinentController {
 	@Autowired
 	private ContinentTranslator continentTranslator;
 
+	/**
+	 * This is the endpoint that return the othercountries in the same continent. A
+	 * Request param "Codes" is required, and the value should be country codes
+	 * separated by comma e.g. /api/continent/othercountries?codes=CA,US
+	 *
+	 * @param codes the value should be country codes separated by comma
+	 * @return Other countries in the same continent
+	 * @throws ClientProtocolException
+	 * @throws URISyntaxException
+	 * @throws IOException
+	 */
 	@GetMapping("/othercountries")
 	public ResponseEntity<ContinentResponse> getUserInfo(@RequestParam String codes)
 			throws ClientProtocolException, URISyntaxException, IOException {

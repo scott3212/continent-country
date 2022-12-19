@@ -34,6 +34,7 @@ public class ApplicationSecurityConfig {
 				.requestMatchers("/h2**").permitAll()// for H2 Console
 				.requestMatchers("/api/login").permitAll()
 				.requestMatchers("/api/register").permitAll()
+				.requestMatchers("/api/continent/othercountries").permitAll()
 				.requestMatchers("/swagger-ui**").permitAll()
 				.requestMatchers("/swagger-ui/**").permitAll()
 				.requestMatchers("/v3/api-docs/**").permitAll()

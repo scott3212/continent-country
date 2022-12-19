@@ -1,7 +1,6 @@
 package com.continentcountry.util;
 
 import java.io.Serializable;
-import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,8 +24,6 @@ public class JwtUtility implements Serializable {
 
 	public static final long JWT_TOKEN_VALIDITY = 10 * 60 * 60;
 
-	private String secret = "secret";
-	byte[] decodedKey = Base64.getDecoder().decode(secret);
 	SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
 	// retrieve username from jwt token
